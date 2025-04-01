@@ -1,0 +1,231 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--white);
+}
+
+:root {
+  --white: rgba(255 255 255 / 0.8);
+  --black: rgba(0, 0, 0, 0.81);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  background-color: #202020;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 4%;
+  position: absolute;
+  z-index: 999;
+
+  div,
+  nav {
+    flex: 1;
+  }
+
+  ul {
+    display: flex;
+    gap: 36px;
+
+    li {
+      list-style-type: none;
+    }
+  }
+
+  .divButtons {
+    display: flex;
+    justify-content: end;
+    gap: 32px;
+
+    .primario {
+      color: var(--black);
+    }
+
+    .secundario {
+      color: var(--white);
+      background-color: rgba(255, 255, 255, 0.079);
+      border: 1px solid var(--white);
+    }
+  }
+}
+
+.slider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  &.vermelho{
+    background-color: #0E0000;
+  }
+  &.cinza{
+    background-color: #141414;
+  }
+  &.verde{
+    background-color: #0e2514;
+  }
+  &.marrom{
+    background-color: #1d1510;
+  }
+
+  .slide {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    
+
+    .nike {
+      position: absolute;
+      h3 {
+        font-size: 26vw;
+        transition: all 1.4s cubic-bezier(1, -0.01, 0.18, 1);
+      }
+
+      h3:nth-child(1) {
+        color: rgba(255, 255, 255, 0.3);
+        transform: translateY(200%);
+      }
+
+      h3:nth-child(2) {
+        position: absolute;
+        top: 0;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.303);
+        transform: translateY(-200%);
+      }
+    }
+
+    .tenis {
+      position: relative;
+      transform: translate(-200%, 100%) rotate(200deg);
+      transition: all 1.4s cubic-bezier(1, -0.01, 0.18, 1);
+    }
+
+    &.active{
+        .tenis{
+            transform: translate(0);
+        }
+
+        .nike{
+            h3{
+                transform: translate(0);
+            }
+        }
+    }
+  }
+}
+
+.slider::before{
+    content: "";
+    position:absolute;
+    width: 528px;
+    height: 528px;
+    background-color: rgba(255, 255, 255, 0.333);
+    border-radius: 50%;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(400px);
+    mix-blend-mode: color-dodge;
+}
+
+.rodape{
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 0 4%;
+
+    .esquerda{
+
+        img{
+            mix-blend-mode: color-dodge;
+            opacity: .6;
+        }
+        h2{
+            font-size: 32px;
+            font-style: italic;
+            font-weight: 400;
+
+            small{
+                font-size: 20px;
+            }
+        }
+    }
+
+    .direita{
+        display: flex;
+        gap: 20px;
+
+        .botaoTenis{
+            position: relative;
+            transition: all 1.4s cubic-bezier(1, -0.01, 0.18, 1);
+
+            img{
+                width: 80px;
+                transform: rotate(20deg);
+                transition: all .6s cubic-bezier(1, -0.01, 0.18, 1);
+                filter: saturate(0);
+            }
+
+        }
+
+        .botaoTenis::before{
+            content: "";
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.11);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 1.4s cubic-bezier(1, -0.01, 0.18, 1);
+        }
+    }
+}
+
+.rodape .botaoTenis.active img{
+    width: 113px;
+    transform: rotate(0);
+    filter: saturate(1);
+}
+
+.rodape .botaoTenis.active::before{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+.rodape .botaoTenis:hover img{
+    transform: translateY(-20px);
+}
+
